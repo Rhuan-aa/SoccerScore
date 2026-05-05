@@ -13,7 +13,7 @@ A interface foi construída exclusivamente com componentes básicos de UI, prior
 O aplicativo atende aos requisitos de negócio através de três telas distintas:
 
 *   **Tela 1 - Configuração da Partida:** Coleta os dados iniciais do jogo (Nome do Time A, Nome do Time B, Gols do Time A e Gols do Time B).
-    *   *Destaques Técnicos:* Implementa `rememberSaveable` para preservar o preenchimento do usuário durante eventos de recriação da Activity (ex: rotação de tela). Possui validação reativa para garantir que todos os campos sejam preenchidos e que os gols sejam valores numéricos inteiros maiores ou iguais a zero[cite: 1].
+    *   *Destaques Técnicos:* Implementa `rememberSaveable` para preservar o preenchimento do usuário durante eventos de recriação da Activity (ex: rotação de tela). Possui validação reativa para garantir que todos os campos sejam preenchidos e que os gols sejam valores numéricos inteiros maiores ou iguais a zero.
 *   **Tela 2 - Resumo da Partida:** Extrai os parâmetros da rota e apresenta o placar processado de forma sumarizada.
     *   *Ações:* "Confirmar Resultado" (avança para a Tela 3 processando as regras de vitória) ou "Editar" (retorna para a Tela 1).
 *   **Tela 3 - Resultado Final:** Exibe a conclusão da partida com base na regra de negócio ("Time A venceu!", "Time B venceu!" ou "Empate emocionante!").
