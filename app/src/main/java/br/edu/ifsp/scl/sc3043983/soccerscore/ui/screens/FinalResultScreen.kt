@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.sc3043983.soccerscore.ui.screens
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +10,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -20,8 +22,14 @@ fun FinalResultScreen(
     navController: NavController,
     resultMessage: String
 ) {
+    val decodedMessage = remember(resultMessage) {
+        Uri.decode(resultMessage)
+    }
+
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -31,7 +39,7 @@ fun FinalResultScreen(
         )
 
         Text(
-            text = resultMessage,
+            text = decodedMessage,
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(vertical = 32.dp)
         )

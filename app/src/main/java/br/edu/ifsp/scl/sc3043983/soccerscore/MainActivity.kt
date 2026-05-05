@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.edu.ifsp.scl.sc3043983.soccerscore.navigation.Routes
 import br.edu.ifsp.scl.sc3043983.soccerscore.ui.screens.ConfigScreen
+import br.edu.ifsp.scl.sc3043983.soccerscore.ui.screens.FinalResultScreen
 import br.edu.ifsp.scl.sc3043983.soccerscore.ui.theme.SoccerScoreTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,15 +24,21 @@ class MainActivity : ComponentActivity() {
                     composable(Routes.SCREEN_1) {
                         ConfigScreen(navController)
                     }
-                    composable(
-                        route = "summary/{nameA}/{nameB}/{scoreA}/{scoreB}"
-                    ) { backStackEntry ->
-                        val nameA = backStackEntry.arguments?.getString("nameA") ?: ""
-                        val nameB = backStackEntry.arguments?.getString("nameB") ?: ""
-                        val scoreA = backStackEntry.arguments?.getString("scoreA")?.toIntOrNull() ?: 0
-                        val scoreB = backStackEntry.arguments?.getString("scoreB")?.toIntOrNull() ?: 0
+                    composable("summary/{teamA}/{teamB}/{goalsA}/{goalsB}") { backStackEntry ->
+                        val teamA = backStackEntry.arguments?.getString("teamA") ?: "Time A"
+                        val teamB = backStackEntry.arguments?.getString("teamB") ?: "Time B"
+                        val goalsA = backStackEntry.arguments?.getString("goalsA")?.toIntOrNull() ?: 0
+                        val goalsB = backStackEntry.arguments?.getString("goalsB")?.toIntOrNull() ?: 0
 
-                        SummaryScreen(navController, nameA, nameB, scoreA, scoreB)
+                        SummaryScreen(navController, teamA, teamB, goalsA, goalsB)
+                    }
+                    composable(Routes.SCREEN_3) { backStackEntry ->
+                        val winnerMessage = backStackEntry.arguments?.getString("winner") ?: "Resultado desconhecido"
+
+                        FinalResultScreen(
+                            navController = navController,
+                            resultMessage = winnerMessage
+                        )
                     }
                 }
             }
