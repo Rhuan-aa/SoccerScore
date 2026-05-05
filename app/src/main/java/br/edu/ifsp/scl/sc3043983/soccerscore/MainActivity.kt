@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.sc3043983.soccerscore
 
+import SoccerScoreTheme
 import SummaryScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,7 +13,6 @@ import androidx.navigation.compose.rememberNavController
 import br.edu.ifsp.scl.sc3043983.soccerscore.navigation.Routes
 import br.edu.ifsp.scl.sc3043983.soccerscore.ui.screens.ConfigScreen
 import br.edu.ifsp.scl.sc3043983.soccerscore.ui.screens.FinalResultScreen
-import br.edu.ifsp.scl.sc3043983.soccerscore.ui.theme.SoccerScoreTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
