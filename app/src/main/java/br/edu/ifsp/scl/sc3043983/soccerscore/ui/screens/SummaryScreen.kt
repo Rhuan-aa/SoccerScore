@@ -1,9 +1,12 @@
+import android.net.Uri
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
@@ -23,7 +26,7 @@ fun SummaryScreen(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Fim do Tempo Regulamentar",
+            text = "Resumo da Partida",
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -40,7 +43,7 @@ fun SummaryScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(32.dp),
+                    .padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
@@ -53,26 +56,35 @@ fun SummaryScreen(
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = nameA,
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(1f),
+                        textAlign = TextAlign.Center,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
                     )
 
                     Text(
-                        text = "$scoreA  x  $scoreB",
+                        text = "$scoreA x $scoreB",
                         style = MaterialTheme.typography.headlineLarge,
                         color = MaterialTheme.colorScheme.primary,
-                        fontWeight = FontWeight.Black
+                        fontWeight = FontWeight.Black,
+                        modifier = Modifier.padding(horizontal = 16.dp)
                     )
 
                     Text(
                         text = nameB,
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(1f),
+                        textAlign = TextAlign.Center,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
             }
@@ -83,13 +95,17 @@ fun SummaryScreen(
         Button(
             onClick = {
                 val result = when {
-                    scoreA > scoreB -> "$nameA Venceu!"
-                    scoreB > scoreA -> "$nameB Venceu!"
-                    else -> "Empate Emocionante!"
+                    scoreA > scoreB -> "$nameA venceu!"
+                    scoreB > scoreA -> "$nameB venceu!"
+                    else -> "Empate emocionante!"
                 }
-                navController.navigate("final/$result")
+
+                val encodedResult = Uri.encode(result)
+                navController.navigate("final/$encodedResult")
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
         ) {
             Text("Confirmar Resultado")
         }
@@ -99,8 +115,9 @@ fun SummaryScreen(
             modifier = Modifier
                 .padding(top = 16.dp)
                 .fillMaxWidth()
+                .height(50.dp)
         ) {
-            Text("Corrigir Dados")
+            Text("Editar")
         }
     }
 }

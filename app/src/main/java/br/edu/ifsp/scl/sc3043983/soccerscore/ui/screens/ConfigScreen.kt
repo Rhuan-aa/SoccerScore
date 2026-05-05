@@ -30,6 +30,11 @@ fun ConfigScreen(navController: NavController) {
     var scoreA by rememberSaveable { mutableStateOf("") }
     var scoreB by rememberSaveable { mutableStateOf("") }
 
+    val isFormValid = teamAName.isNotBlank() &&
+            teamBName.isNotBlank() &&
+            (scoreA.toIntOrNull() ?: -1) >= 0 &&
+            (scoreB.toIntOrNull() ?: -1) >= 0
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -47,7 +52,8 @@ fun ConfigScreen(navController: NavController) {
             value = teamAName,
             onValueChange = { teamAName = it },
             label = { Text("Nome do Time A") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
         )
 
         OutlinedTextField(
@@ -55,7 +61,8 @@ fun ConfigScreen(navController: NavController) {
             onValueChange = { scoreA = it },
             label = { Text("Gols do Time A") },
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -64,7 +71,8 @@ fun ConfigScreen(navController: NavController) {
             value = teamBName,
             onValueChange = { teamBName = it },
             label = { Text("Nome do Time B") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
         )
 
         OutlinedTextField(
@@ -72,21 +80,18 @@ fun ConfigScreen(navController: NavController) {
             onValueChange = { scoreB = it },
             label = { Text("Gols do Time B") },
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true
         )
 
         Button(
             onClick = {
-                val sA = scoreA.toIntOrNull() ?: -1
-                val sB = scoreB.toIntOrNull() ?: -1
-
-                if (teamAName.isNotBlank() && teamBName.isNotBlank() && sA >= 0 && sB >= 0) {
-                    navController.navigate("summary/$teamAName/$teamBName/$sA/$sB")
-                }
+                navController.navigate("summary/$teamAName/$teamBName/$scoreA/$scoreB")
             },
             modifier = Modifier
                 .padding(top = 24.dp)
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            enabled = isFormValid
         ) {
             Text("Ver Resultado")
         }
