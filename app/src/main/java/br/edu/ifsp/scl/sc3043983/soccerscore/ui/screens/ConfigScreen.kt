@@ -81,7 +81,7 @@ fun ConfigScreen(navController: NavController) {
                 val sB = scoreB.toIntOrNull() ?: -1
 
                 if (teamAName.isNotBlank() && teamBName.isNotBlank() && sA >= 0 && sB >= 0) {
-                    navController.navigate("resumo/$teamAName/$teamBName/$sA/$sB")
+                    navController.navigate("summary/$teamAName/$teamBName/$sA/$sB")
                 }
             },
             modifier = Modifier
