@@ -4,13 +4,13 @@
 
 ## 📋 Sobre o Projeto
 
-O **SoccerScore** é um aplicativo Android desenvolvido nativamente em Kotlin, projetado para atuar como um Simulador de Placar de Futebol. O foco deste projeto é consolidar os fundamentos da programação declarativa utilizando o **Jetpack Compose** para a construção da interface gráfica e o **Navigation Compose** para a gestão do fluxo e passagem de parâmetros entre telas[cite: 1].
+O **SoccerScore** é um aplicativo Android desenvolvido nativamente em Kotlin, projetado para atuar como um Simulador de Placar de Futebol. O foco deste projeto é consolidar os fundamentos da programação declarativa utilizando o **Jetpack Compose** para a construção da interface gráfica e o **Navigation Compose** para a gestão do fluxo e passagem de parâmetros entre telas.
 
 A interface foi construída exclusivamente com componentes básicos de UI, priorizando organização, hierarquia visual e um gerenciamento de estado resiliente.
 
 ## 🚀 Estrutura e Funcionalidades
 
-O aplicativo atende aos requisitos de negócio através de três telas distintas[cite: 1]:
+O aplicativo atende aos requisitos de negócio através de três telas distintas:
 
 *   **Tela 1 - Configuração da Partida:** Coleta os dados iniciais do jogo (Nome do Time A, Nome do Time B, Gols do Time A e Gols do Time B).
     *   *Destaques Técnicos:* Implementa `rememberSaveable` para preservar o preenchimento do usuário durante eventos de recriação da Activity (ex: rotação de tela). Possui validação reativa para garantir que todos os campos sejam preenchidos e que os gols sejam valores numéricos inteiros maiores ou iguais a zero[cite: 1].
